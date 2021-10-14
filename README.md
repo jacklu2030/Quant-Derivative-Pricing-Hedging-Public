@@ -70,10 +70,15 @@ Not losing money is the main goal, maximize profit is another. A risk neutral pr
 6. Performance:
 
 	Black-Scholes analytic 	O(1) fastest
+
   	Monto Carlo 		O(nk) polynomial time
+
  	Asian Exotic 		O(nk) polynomial time
+
   	Binomial Lattice 	O(2n) slowest
+
    	Jump Diffusion BSM	O(nk) polynomial tim
+
 
 
 Author’s contact: jianlu2001@yahoo.com

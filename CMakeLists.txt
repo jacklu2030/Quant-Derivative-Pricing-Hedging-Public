@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.17)
+project(GBMPricing)
+
+set(CMAKE_CXX_STANDARD 20)
+
+add_executable(GBMPricing main.cpp vanillaOption/VanillaOption.cpp vanillaOption/VanillaOption.h quantFormula/Distribution.cpp quantFormula/Distribution.h quantFormula/BlackScholes/EuropeanOption.cpp quantFormula/BlackScholes/EuropeanOption.h quantFormula/Data.cpp quantFormula/Data.h quantFormula/MonteCarlo/OptionStockPricing.cpp quantFormula/MonteCarlo/OptionStockPricing.h quantFormula/Greeks/Greeks.cpp quantFormula/Greeks/Greeks.h quantFormula/RandomNumber/GaussianBoxMuller.cpp quantFormula/RandomNumber/GaussianBoxMuller.h quantFormula/AsianExotic/Payoff.cpp quantFormula/AsianExotic/Payoff.h quantFormula/AsianExotic/AsianExoticOption.cpp quantFormula/AsianExotic/AsianExoticOption.h quantFormula/AsianExotic/PathGenerator.cpp quantFormula/AsianExotic/PathGenerator.h quantFormula/AsianExotic/AsianMain.cpp quantFormula/AsianExotic/AsianMain.h quantFormula/Binomial/Binomial.cpp quantFormula/Binomial/Binomial.h quantFormula/JumpDiffusionModel/JumpDiffusion.cpp quantFormula/JumpDiffusionModel/JumpDiffusion.h)

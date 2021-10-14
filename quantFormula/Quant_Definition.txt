@@ -1,0 +1,48 @@
+
+1. Geometric Brownian Motion
+
+A stochastic process St is said to follow a GBM if it satisfies the following stochastic differential equation (SDE):
+
+dS{t}=mu * S{t} * dt + sigma * S{t} * dW{t}
+
+where W_{t} is a Wiener process or Brownian motion, and \mu  ('the percentage drift') and \sigma  ('the percentage volatility') are constants.
+The former is used to model deterministic trends, while the latter term is often used to model a set of unpredictable events occurring during this motion.
+
+A geometric Brownian motion (GBM) (also known as exponential Brownian motion) is a continuous-time stochastic process
+in which the logarithm of the randomly varying quantity follows a Brownian motion (also called a Wiener process) with drift.[1]
+It is an important example of stochastic processes satisfying a stochastic differential equation (SDE); in particular,
+it is used in mathematical finance to model stock prices in the Black–Scholes model.
+
+   Three types of GBM: (drift + Brownian-Motion)
+
+   a)  If the drift is 0, it is standard BM;
+   b)  If the drift is constant, it is BM with constant drift;
+   c)  If the drift is linear, it is geometric BM.
+
+2.  Characterisations of the Wiener process
+
+    The Wiener process {\displaystyle W_{t}}W_{t} is characterised by the following properties:[2]
+
+    W{0}=0
+    W has independent increments: for every t>0, the future increments W{t+u} - W{t}, u > 0 are independent of the past values W{s}, s <= t
+    W has Gaussian increments: W{t+u} - W{t} is normally distributed with mean 0 and variance u, W{t+u} - W{t} => N(0,u)
+    W has continuous paths: W{t} is continuous in t.
+
+3. Log-normal distribution
+
+   a)  a log-normal (or lognormal) distribution is a continuous probability distribution of a random variable whose logarithm is normally distributed.
+   b)  Thus, if the random variable X is log-normally distributed, then Y = ln(X) has a normal distribution;
+   c)  Equivalently, if Y has a normal distribution, then the exponential function of Y, X = exp(Y), has a log-normal distribution.
+
+   d)  A random variable which is log-normally distributed takes only positive real values.
+   e)  A log-normal process is the statistical realization of the multiplicative product of many independent random variables, each of which is positive.
+
+4.  Central Limit Theorem
+
+   a)  In probability theory, the central limit theorem (CLT) establishes that, in many situations, when independent random variables are summed up,
+       their properly normalized sum tends toward a normal distribution (informally a bell curve) even if the original variables themselves are not normally distributed.
+   b)  For example, suppose that a sample is obtained containing many observations, each observation being randomly generated in a way that does not
+       depend on the values of the other observations, and that the arithmetic mean of the observed values is computed. If this procedure is performed many times,
+       the central limit theorem says that the probability distribution of the average will closely approximate a normal distribution.
+
+   c)  The earliest version of this theorem, that the normal distribution may be used as an approximation to the binomial distribution
