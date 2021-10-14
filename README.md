@@ -1,4 +1,7 @@
 
+                     Risk Neutral Portfolio Hedged via Geometric Browning Motion 
+                                          By Jack Lu, Aug, 2021
+
 0. Abstract: 
 
 Every transaction is buying or selling risks. The main goal of the strategy is to build a portfolio where future values have zero chance being negative, and non-zero chance of being positive or higher.
@@ -24,10 +27,10 @@ a) Given the conditions below, the bank sells call option:
    4) T = time to expire
    5) σ = volatility
    6) C = call option premium calculated using the Black-Scholes model
-   b) Calculate the call premium and delta derivative
-   c) If stock price stays below K, we do nothing
-   d) Whenever stock price go above S, we buy shares (maybe factional) to cover the portfolio.
-      Whenever stock price goes below K, we sell some shares, until we reach S where we sell all stock shares.
+b) Calculate the call premium and delta derivative
+c) If stock price stays below K, we do nothing
+d) Whenever stock price go above S, we buy shares (maybe factional) to cover the portfolio.
+   Whenever stock price goes below K, we sell some shares, until we reach S where we sell all stock shares.
 e) At expiry, stock price is S1. Below is the bank’s profit:
    1) IfS1<=S,profit=C
    2) IfS<S1<=K,profit=C+(K–S1)
@@ -36,17 +39,19 @@ e) At expiry, stock price is S1. Below is the bank’s profit:
 The key of this sample risk neutral portfolio is to calculate the reasonable call option price, and the delta ratio of stock shares, with assumptions of no transaction cost, constant interest rate, constant volatility, no dividend, no tax.
 
 3 C++ Implementation of GBM/PDE
+
 The table below compares option prices from various quant formulas. Please refer to Github for the C++ implementation. The same parameters below are applied to all quant strategies for the purpose of comparison:
-K = 100 	Strike
-S = 100		Spot Price 
-r = 0.05	Risk-Free Interest Rate / Year 
-T= 1		Time to Expiry (years)
-σ = 0.25	volatility
-N = 50		Terms in the finite sum approximation
-m = 1.083278 	Scale Factor
-lambda = 1.0 	Intensit of Jump
-mu = 0.4 	Standard Deviation of Log-normal Jump Process	
-num_simulation = 100000
+
+	K = 100 	Strike
+	S = 100		Spot Price 
+	r = 0.05	Risk-Free Interest Rate / Year 
+	T= 1		Time to Expiry (years)
+	σ = 0.25	volatility
+	N = 50		Terms in the finite sum approximation
+	m = 1.083278 	Scale Factor
+	lambda = 1.0 	Intensit of Jump
+	mu = 0.4 	Standard Deviation of Log-normal Jump Process	
+	num_simulation = 100000
 
 4. Here are the noticeable from the results:
 
