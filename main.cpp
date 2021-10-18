@@ -9,6 +9,8 @@
 #include "./quantFormula/Binomial/Binomial.h"
 #include "./quantFormula/AsianExotic/AsianMain.h"
 #include "./quantFormula/JumpDiffusionModel/JumpDiffusion.h"
+#include "./quantFormula/StochasticVolatility/TestCorrelatedDraw.h"
+#include "./quantFormula/StochasticVolatility/StochasticVolatilityMain.h"
 
 int main() {
     std::cout << "Welcome to Geometric Brownian Motion Model for Option / Stock Pricing!!!\n" << std::endl;
@@ -17,7 +19,7 @@ int main() {
     std::cout << "Vanilla Put Price=" << vo.calcPutPrice() << std::endl;
 
     // ========================================================
-    // ANALYTIC FORMULAE -- Based on analytic formula / solution of Bkack-Schelos for European Vanilla Options
+    // 1. Black-Schelos for European Vanilla Options -- ANALYTIC FORMULAE
     // ========================================================
 
     std::cout << "\n\n1. European Vanilla Option:" << std::endl;
@@ -40,7 +42,7 @@ int main() {
     std::cout << "Black-Scholes European Vanilla Put rho=" << gk.put_rho() << std::endl;
 
     // ========================================================
-    // MONTE CARLO -- solved based on numerical method (tree / Geometric Brownian Motion)
+    // 2. MONTE CARLO -- solved based on numerical method (tree / Geometric Brownian Motion)
     // ========================================================
 
     OptionStockPricing op(in);
@@ -64,7 +66,7 @@ int main() {
     std::cout << "Monte Carlo Future Stock Price=" << op.monte_carlo_stock_price(simulation_num) << std::endl;
 
     // ========================================================
-    // Binomial Lattice -- solved based on numerical method (tree / Geometric Brownian Motion)
+    // 3. Binomial Lattice -- solved based on numerical method (tree / Geometric Brownian Motion)
     // ========================================================
     std::cout << "\n\n3. Binomial Lattice Amreican Option: " << std::endl;
     std::cout << "************************************** \n" << std::endl;
@@ -76,7 +78,7 @@ int main() {
     std::cout << "Binomial Lattice Amreican Put=" << americaPut << std::endl;
 
     // ========================================================
-    // Binomial Lattice -- solved based on numerical method (tree / Geometric Brownian Motion)
+    // 4. Binomial Lattice -- solved based on numerical method (tree / Geometric Brownian Motion)
     // ========================================================
     std::cout << "\n\n4. Asian Exotic Option: " << std::endl;
     std::cout << "*************************** \n" << std::endl;
@@ -94,7 +96,7 @@ int main() {
     std::cout << "Asian Exotic(Geometric mean) Put=" << asianGeometricPut << std::endl;
 
     // ========================================================
-    // Jump Diffusion -- solved based on Black-Scholes numerical method (Geometric Brownian Motion)
+    // 5. Jump Diffusion -- solved based on Black-Scholes numerical method (Geometric Brownian Motion)
     // ========================================================
     std::cout << "\n\n5. Jump Diffusion Option: " << std::endl;
     std::cout << "*************************** \n" << std::endl;
@@ -107,6 +109,31 @@ int main() {
     std::cout << "\nJump Diffusion EUR Call=" << jumpEurCall << std::endl;
     std::cout << "Jump Diffusion EUR Put=" << jumpEurPut << std::endl;
 
+    // ========================================================
+    // Test the two Correlated normal distributions
+    // ========================================================
+    std::cout << "\n\n6. Test the two Correlated normal distributions: " << std::endl;
+    std::cout << "******************************************* \n" << std::endl;
+    TestCorrelatedDraw::testCorrelatedDraw();
+
+    // ========================================================
+    // Get Put / Call prices of EUR vanilla Option using TWO separated yet correlated
+    // Geometric Brownian Motions: one for spot price random walk, one for volatility random walk
+    // ========================================================
+    std::cout << "\n\n6. Get Put / Call prices of EUR vanilla Option using TWO separated yet correlated GBM paths: " << std::endl;
+    std::cout << "**************************************************************** \n" << std::endl;
+    StochasticVolatilityMain stockastic;
+    int num_sims = 100000;     // Number of simulated asset paths
+    num_intervals = 1000;     // Number of intervals for the asset path to be sampled
+    double rho = -0.7;            // Correlation of asset and volatility
+    double kappa = 6.21;          // Mean−reversion rate
+    double theta = 0.019;          // Long run average underlying asset volatility
+    double xi = 0.61;             // ”Vol of vol”
+    //in = {100, 100, 0.0319, 1, 0.010201};
+    double stochastic_call_price = stockastic.call_price(num_sims, num_intervals, rho, kappa, theta, xi, in);
+    double stochastic_put_price = stockastic.put_price(num_sims, num_intervals, rho, kappa, theta, xi, in);
+    std::cout << "Stochastic Volatility Two GBM paths: call_price = " << stochastic_call_price << std::endl;
+    std::cout << "Stochastic Volatility Two GBM paths: put_price = " << stochastic_put_price << std::endl;
 
     //GaussianBoxMuller gbox;
     //gbox.testRun(0.05, 0.2);
